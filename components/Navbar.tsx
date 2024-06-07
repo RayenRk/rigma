@@ -4,7 +4,8 @@ import Image from "next/image";
 import { memo } from "react";
 
 import ActiveUsers from "./users/ActiveUsers";
-import { NavbarProps } from "@/types/type";
+import { ActiveElement, NavbarProps } from "@/types/type";
+import { navElements } from "@/constants";
 
 const Navbar = ({ activeElement }: NavbarProps) => {
   //   const isActive = (value: string | Array<ActiveElement>) =>
@@ -15,6 +16,26 @@ const Navbar = ({ activeElement }: NavbarProps) => {
   return (
     <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white">
       <Image src="/assets/logo.svg" alt="Rigma" width={58} height={20} />
+
+      <ul className="flex flex-row">
+        {navElements.map((item): ActiveElement | any => (
+          <li 
+          key={item.value}
+          >
+            {Array.isArray(item.value) ? (
+              <ShapesMenu />
+            ) : item?.value === 'comment' ? (
+              <NewThread>
+                </NewThread>
+                ) : (
+                  <button>
+
+                  </button>
+                  )}
+          </li>
+        ))}
+      </ul>
+
       <ActiveUsers />
     </nav>
   );
