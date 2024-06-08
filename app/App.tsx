@@ -196,7 +196,7 @@ export default function Page() {
   }, [canvasObjects]);
 
   return (
-    <main className="h-screen overflow-hidden ">
+    <main className="h-full overflow-hidden ">
       <Navbar
         activeElement={activeElement}
         handleActiveElement={handleActiveElement}
@@ -211,7 +211,7 @@ export default function Page() {
           });
         }}
       />
-      <section className="flex h-full flex-row">
+      <section className="flex h-screen flex-row">
         <LeftSidebar allShapes={Array.from(canvasObjects)} />
         <Live canvasRef={canvasRef} undo={undo} redo={redo}/>
         <RightSidebar 
