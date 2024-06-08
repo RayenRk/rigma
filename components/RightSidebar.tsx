@@ -1,14 +1,57 @@
 import React from "react";
+import Export from "./settings/Export";
+import Dimensions from "./settings/Dimensions";
+import Color from "./settings/Color";
+import { RightSidebarProps } from "@/types/type";
+import { modifyShape } from "@/lib/shapes";
 
-function RightSidebar() {
+function RightSidebar({
+  elementAttributes,
+  setElementAttributes,
+  fabricRef,
+  activeObjectRef,
+  isEditingRef,
+  syncShapeInStorage,
+}: RightSidebarProps) {
+
+  const handleInputChange = (property: string, value: string) => {
+    if (!isEditingRef.current) isEditingRef.current = true;
+
+    setElementAttributes((prev) => ({
+      ...prev,
+      [property]: value,
+    }));
+
+    modifyShape({
+      canvas: fabricRef.current as fabric.Canvas,
+      property,
+      value,
+      activeObjectRef,
+      syncShapeInStorage,
+    });
+  }
+
   return (
     <section
       className="flex flex-col border-t border-primary-grey-200
     bg-primary-black text-primary-grey-300 min-2-[277px]
-    sticky left-0 h-full max-sm:hidden select-none
-    overflow-y-auto pb-20"
+    sticky right-0 h-full max-sm:hidden select-none"
     >
       <h3 className="px-5 pt-4 text-xs uppercase">Design</h3>
+      <span className="text-sm text-primary-grey-300 mt-3 px-5 border-b border-primary-grey-200 pb-4">
+        Change Propreties
+      </span>
+
+      <Dimensions 
+      width={elementAttributes.width}
+      height={elementAttributes.height}
+      handleInputChange={handleInputChange}
+      isEditingRef={isEditingRef}
+      />
+      <Text />
+      <Color />
+      <Color />
+      <Export />
     </section>
   );
 }
