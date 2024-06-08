@@ -1,6 +1,7 @@
 import React from "react";
 import Export from "./settings/Export";
 import Dimensions from "./settings/Dimensions";
+import Text from "./settings/Text";
 import Color from "./settings/Color";
 import { RightSidebarProps } from "@/types/type";
 import { modifyShape } from "@/lib/shapes";
@@ -48,7 +49,12 @@ function RightSidebar({
       handleInputChange={handleInputChange}
       isEditingRef={isEditingRef}
       />
-      <Text />
+      <Text 
+      fontFamily={elementAttributes.fontFamily}
+      fontSize={elementAttributes.fontSize}
+      fontWeight={elementAttributes.fontWeight}
+      handleInputChange={handleInputChange}
+      />
       <Color />
       <Color />
       <Export />
