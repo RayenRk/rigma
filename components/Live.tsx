@@ -275,7 +275,7 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
         <Comments />
       </ContextMenuTrigger>
 
-      <ContextMenuContent className="right-menu-content">
+      {/* <ContextMenuContent className="right-menu-content">
         {shortcuts.map((item) => (
           <ContextMenuItem
             key={item.key}
@@ -286,7 +286,7 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
             <p className="text-xs text-primary-grey-300">{item.shortcut}</p>
           </ContextMenuItem>
         ))}
-      </ContextMenuContent>
+      </ContextMenuContent> */}
     </ContextMenu>
   );
 };
